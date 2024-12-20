@@ -21,7 +21,7 @@ function updateCityTime() {
   let japanElement = document.querySelector("#jap");
   let japanDate = japanElement.querySelector(".date");
   let japanTime = japanElement.querySelector(".time");
-  let japanAA = moment().tz("Asia/Japan");
+  let japanAA = moment().tz("Japan");
   japanDate.innerHTML = japanAA.format("MMMM Do YYYY");
   japanTime.innerHTML = japanAA.format("h:mm:ss [<small>]A[</small>]");
 
