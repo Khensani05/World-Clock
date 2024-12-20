@@ -39,18 +39,28 @@ setInterval(updateCityTime, 1000);
 
 function updateCity(event) {
   let cityTZ = event.target.value;
-  let cityName = cityTZ.replace("_", "  ").split("/")[1];
+
+  if (cityTZ === "current") {
+    cityTZ = moment.tz.guess(); // Guess the user's timezone
+  }
+
+  let cityName = cityTZ.includes("/")
+    ? cityTZ.split("/")[1].replace("_", " ")
+    : cityTZ;
+
   let cityTime = moment().tz(cityTZ);
   let cities = document.querySelector("#cities");
-  cities.innerHTML = `<div class="cities">
-          <div>
-            <h2>${cityName}</h2>
-            <div class="date">${cityTime.format("MMMM Do YYYY")}</div>
-          </div>
-          <div class="time">${cityTime.format(
-            "h:mm:ss"
-          )}<small>${cityTime.format("A")}</small></div>
-        </div>
+
+  cities.innerHTML = `
+    <div class="cities">
+      <div>
+        <h2>${cityName}</h2>
+        <div class="date">${cityTime.format("MMMM Do YYYY")}</div>
+      </div>
+      <div class="time">${cityTime.format("h:mm:ss")} <small>${cityTime.format(
+    "A"
+  )}</small></div>
+    </div>
   `;
 }
 
