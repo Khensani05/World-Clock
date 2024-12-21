@@ -66,3 +66,43 @@ function updateCity(event) {
 
 let citiesChoose = document.querySelector("#choose-city");
 citiesChoose.addEventListener("change", updateCity);
+
+function resetCities() {
+  const defaultCities = `
+          <div class="cities" id="los">
+            <div>
+              <h2>Los Angeles <span class="fi fi-us"></span></h2>
+              <div class="date">20 December 2024</div>
+            </div>
+            <div class="time">09:10 [<small>]AM[</small>]</div>
+          </div>
+          <div class="cities" id="syd">
+            <div>
+              <h2>Sydney <span class="fi fi-au"></span></h2>
+              <div class="date">20 December 2024</div>
+            </div>
+            <div class="time">09:10  [<small>]AM[</small>]</div>
+          </div>
+          <div class="cities" id="jap">
+            <div>
+              <h2>Tokyo <span class="fi fi-jp"></span></h2>
+              <div class="date">20 December 2024</div>
+            </div>
+            <div class="time">09:10  [<small>]AM[</small>]</div>
+          </div>
+          <div class="cities" id="par">
+            <div>
+              <h2>Paris <span class="fi fi-fr"></span></h2>
+              <div class="date">20 December 2024</div>
+            </div>
+            <div class="time">09:10  [<small>]AM[</small>]</div>
+          </div>
+        `;
+  document.querySelector("#cities").innerHTML = defaultCities;
+  updateCityTime(); // Ensure time updates resume for the default cities
+}
+
+document.querySelector("#home-link").addEventListener("click", (event) => {
+  event.preventDefault(); // Prevent default link behavior
+  resetCities();
+});
